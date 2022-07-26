@@ -1,0 +1,11 @@
+{
+	"liferayDir": "/home/ces-user/Sacombank_Workspace/lctsacombank/liferay/bundles",
+	"webpack": {
+		"rules": [
+			{
+				"test": "src\\/.*\\.js$",
+				"use": "babel-loader"
+			}
+		]
+	}
+}

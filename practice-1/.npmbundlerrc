@@ -1,0 +1,13 @@
+{
+	"create-jar": {
+		"output-dir": "dist",
+		"features": {
+			"js-extender": true,
+			"web-context": "/practice-1"
+		}
+	},
+	"dump-report": true,
+	"*": {
+        "plugins": ["inject-imports-dependencies"]
+	}
+}
