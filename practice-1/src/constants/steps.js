@@ -1,0 +1,6 @@
+export const steps = {
+  INSURANCE_FORM: 1,
+  BENEFICIARY_FORM: 2,
+  CONFIRM_FORM: 3,
+  SUCCESSFUL_PAGE: 4,
+};
