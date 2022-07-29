@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
 const headlessAPI = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: 'http://localhost:8080',
   headers: {
-    Authorization: "Basic " + window.btoa("test@liferay.com:a"),
-  },
+    Authorization: 'Basic ' + window.btoa('test@liferay.com:a')
+  }
 });
 
 export default headlessAPI;

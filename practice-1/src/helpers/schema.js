@@ -1,61 +1,55 @@
-import yup from "./yupCustom";
+import * as yup from 'yup';
+import { messages } from '../constants/messageConstants';
 export const InsuranceSchema = yup.object().shape({
   firstName: yup
     .string()
-    .required("First Name is required")
-    .onlyLetter("First Name must be only letters"),
+    .required(messages.REQUIRED)
+    .max(30, messages.MAX_CHARACTER_30)
+    .matches(/^[A-Za-z ]*$/, messages.ONLY_LETTER),
   lastName: yup
     .string()
-    .required("Last Name is required")
-    .onlyLetter("Last Name must be only letters"),
-  birthday: yup
-    .date()
-    .max(new Date(), "Birthday must be less than current date"),
+    .required(messages.REQUIRED)
+    .max(30, messages.MAX_CHARACTER_30)
+    .matches(/^[A-Za-z ]*$/, messages.ONLY_LETTER),
+  birthday: yup.date().required(messages.REQUIRED).max(new Date(), messages.LESS_THAN_CURRENT_DATE),
   idCard: yup
     .string()
-    .required("ID Card is required")
-    .onlyNumber("ID Card must be only numbers")
-    .min(10, "ID Card must be 10 numbers")
-    .max(10, "ID Card must be 10 numbers"),
+    .required(messages.REQUIRED)
+    .matches(/^[0-9]{10}$/, messages.ONLY_DIGIT_10),
   phoneNumber: yup
     .string()
-    .required("Phone Number is required")
-    .onlyNumber("Phone Number must be only numbers")
-    .min(10, "Phone Number must be 10 numbers")
-    .max(10, "Phone Number must be 10 numbers"),
+    .required(messages.REQUIRED)
+    .matches(/^[0-9]{10}$/, messages.ONLY_DIGIT_10),
   monthlySaving: yup
     .string()
-    .required("Monthly Saving is required")
-    .onlyNumber("Monthly Saving must be only numbers")
-    .min(6, "Monthly Saving must be at least 100000 VND"),
+    .required(messages.REQUIRED)
+    .matches(/^[0-9]*$/, messages.ONLY_DIGIT)
+    .min(6, messages.MIN_VALUE_100000)
 });
 export const BeneficiarySchema = yup.object().shape({
   beneficiaryFirstName: yup
     .string()
-    .required("First Name is required")
-    .onlyLetter("First Name must be only letters"),
+    .required(messages.REQUIRED)
+    .max(30, messages.MAX_CHARACTER_30)
+    .matches(/^[A-Za-z ]*$/, messages.ONLY_LETTER),
   beneficiaryLastName: yup
     .string()
-    .required("Last Name is required")
-    .onlyLetter("Last Name must be only letters"),
+    .required(messages.REQUIRED)
+    .max(30, messages.MAX_CHARACTER_30)
+    .matches(/^[A-Za-z ]*$/, messages.ONLY_LETTER),
   beneficiaryBirthday: yup
     .date()
-    .max(new Date(), "Birthday must be less than current date"),
+    .required(messages.REQUIRED)
+    .max(new Date(), messages.LESS_THAN_CURRENT_DATE),
   beneficiaryIdCard: yup
     .string()
-    .required("ID Card is required")
-    .onlyNumber("ID Card must be only numbers")
-    .min(10, "ID Card must be 10 numbers")
-    .max(10, "ID Card must be 10 numbers"),
+    .required(messages.REQUIRED)
+    .matches(/^[0-9]{10}$/, messages.ONLY_DIGIT_10),
   beneficiaryPhoneNumber: yup
     .string()
-    .required("Phone Number is required")
-    .onlyNumber("Phone Number must be only numbers")
-    .min(10, "Phone Number must be 10 numbers")
-    .max(10, "Phone Number must be 10 numbers"),
+    .required(messages.REQUIRED)
+    .matches(/^[0-9]{10}$/, messages.ONLY_DIGIT_10)
 });
 export const ConfirmSchema = yup.object().shape({
-  agreeSubmit: yup
-    .boolean()
-    .oneOf([true], "You must accept the terms and conditions")
+  agreeSubmit: yup.boolean().oneOf([true], messages.TERM_AGREEMENT)
 });

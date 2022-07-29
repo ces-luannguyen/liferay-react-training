@@ -1,9 +1,10 @@
-import { Button, Container, Grid, TextField } from "@mui/material";
-import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { goNext, setFormData } from "../form/formSlice";
-import { InsuranceSchema } from "../helpers/schema";
-const InsuranceForm = (props) => {
+import { Container, Grid, TextField, InputLabel, Select, MenuItem } from '@mui/material';
+import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { goNext, setFormData } from '../../form/formSlice';
+import { BeneficiarySchema } from '../../helpers/schema';
+import Buttons from './Buttons';
+const BeneficiaryForm = () => {
   const data = useSelector((state) => state.form.data);
 
   const dispatch = useDispatch();
@@ -14,12 +15,11 @@ const InsuranceForm = (props) => {
 
       dispatch(goNext());
     },
-    validationSchema: InsuranceSchema,
+    validationSchema: BeneficiarySchema
   });
-
   return (
     <Container maxWidth="md">
-      <h1>Insurance Form</h1>
+      <h1>Beneficiary Form</h1>
       <div>
         <form onSubmit={formik.handleSubmit}>
           <div>
@@ -29,16 +29,16 @@ const InsuranceForm = (props) => {
                   fullWidth
                   id="outlined-basic"
                   label="First Name *"
-                  name="firstName"
+                  name="beneficiaryFirstName"
                   variant="filled"
                   size="small"
                   margin="normal"
                   onChange={formik.handleChange}
-                  value={formik.values.firstName}
+                  value={formik.values.beneficiaryFirstName}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.firstName && formik.errors.firstName && (
-                  <span className="error">{formik.errors.firstName}</span>
+                {formik.touched.beneficiaryFirstName && formik.errors.beneficiaryFirstName && (
+                  <span className="error">{formik.errors.beneficiaryFirstName}</span>
                 )}
               </Grid>
               <Grid item xs={4}>
@@ -46,12 +46,13 @@ const InsuranceForm = (props) => {
                   fullWidth
                   id="outlined-basic"
                   label="Middle Name"
-                  name="middleName"
+                  name="beneficiaryMiddleName"
                   variant="filled"
                   size="small"
                   margin="normal"
                   onChange={formik.handleChange}
-                  value={formik.values.middleName}
+                  value={formik.values.beneficiaryMiddleName}
+                  onBlur={formik.handleBlur}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -59,16 +60,16 @@ const InsuranceForm = (props) => {
                   fullWidth
                   id="outlined-basic"
                   label="Last Name *"
-                  name="lastName"
+                  name="beneficiaryLastName"
                   variant="filled"
                   size="small"
                   margin="normal"
                   onChange={formik.handleChange}
-                  value={formik.values.lastName}
+                  value={formik.values.beneficiaryLastName}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.lastName && formik.errors.lastName && (
-                  <span className="error">{formik.errors.lastName}</span>
+                {formik.touched.beneficiaryLastName && formik.errors.beneficiaryLastName && (
+                  <span className="error">{formik.errors.beneficiaryLastName}</span>
                 )}
               </Grid>
             </Grid>
@@ -80,18 +81,18 @@ const InsuranceForm = (props) => {
                   label="Birthday *"
                   type="date"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                   fullWidth
                   size="medium"
                   margin="normal"
-                  name="birthday"
+                  name="beneficiaryBirthday"
                   onChange={formik.handleChange}
-                  value={formik.values.birthday}
+                  value={formik.values.beneficiaryBirthday}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.birthday && formik.errors.birthday && (
-                  <span className="error">{formik.errors.birthday}</span>
+                {formik.touched.beneficiaryBirthday && formik.errors.beneficiaryBirthday && (
+                  <span className="error">{formik.errors.beneficiaryBirthday}</span>
                 )}
               </Grid>
               <Grid item xs={6}>
@@ -99,17 +100,17 @@ const InsuranceForm = (props) => {
                   fullWidth
                   id="outlined-basic"
                   label="ID Card *"
-                  name="idCard"
+                  name="beneficiaryIdCard"
                   variant="filled"
                   size="small"
                   margin="normal"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.idCard}
+                  value={formik.values.beneficiaryIdCard}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.idCard && formik.errors.idCard && (
-                  <span className="error">{formik.errors.idCard}</span>
+                {formik.touched.beneficiaryIdCard && formik.errors.beneficiaryIdCard && (
+                  <span className="error">{formik.errors.beneficiaryIdCard}</span>
                 )}
               </Grid>
             </Grid>
@@ -119,55 +120,45 @@ const InsuranceForm = (props) => {
                   fullWidth
                   id="outlined-basic"
                   label="Phone Number *"
-                  name="phoneNumber"
+                  name="beneficiaryPhoneNumber"
                   variant="filled"
                   size="small"
                   margin="normal"
                   type="number"
                   onChange={formik.handleChange}
-                  value={formik.values.phoneNumber}
+                  value={formik.values.beneficiaryPhoneNumber}
                   onBlur={formik.handleBlur}
                 />
-                {formik.touched.phoneNumber && formik.errors.phoneNumber && (
-                  <span className="error">{formik.errors.phoneNumber}</span>
+                {formik.touched.beneficiaryPhoneNumber && formik.errors.beneficiaryPhoneNumber && (
+                  <span className="error">{formik.errors.beneficiaryPhoneNumber}</span>
                 )}
               </Grid>
               <Grid item xs={6}>
-                <TextField
+                <InputLabel id="relationship-select-label">Relationship *</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
                   fullWidth
-                  id="outlined-basic"
-                  label="Monthly Saving *"
-                  name="monthlySaving"
-                  variant="filled"
-                  size="small"
-                  margin="normal"
-                  type="number"
+                  name="relationship"
                   onChange={formik.handleChange}
-                  value={formik.values.monthlySaving}
-                  onBlur={formik.handleBlur}
-                />
-                {formik.touched.monthlySaving &&
-                  formik.errors.monthlySaving && (
-                    <span className="error">{formik.errors.monthlySaving}</span>
-                  )}
+                  value={formik.values.relationship}
+                  onBlur={formik.handleBlur}>
+                  <MenuItem value="spouse">Spouse</MenuItem>
+                  <MenuItem value="children">Children</MenuItem>
+                  <MenuItem value="relatives">Relatives</MenuItem>
+                </Select>
+                {formik.touched.relationship && formik.errors.relationship && (
+                  <span className="error">{formik.errors.relationship}</span>
+                )}
               </Grid>
             </Grid>
           </div>
 
-          <Grid
-            container
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="center"
-          >
-            <Button variant="contained" type="submit">
-              Next
-            </Button>
-          </Grid>
+          <Buttons retainedData={formik.values} />
         </form>
       </div>
     </Container>
   );
 };
 
-export default InsuranceForm;
+export default BeneficiaryForm;

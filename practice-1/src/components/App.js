@@ -1,40 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { steps } from "../constants/steps";
-import BeneficiaryForm from "./BeneficiaryForm";
-import ConfirmForm from "./ConfirmForm";
-import InsuranceForm from "./InsuranceForm";
-import SuccessfulPage from "./SuccessfulPage";
+import React from 'react';
+import { steps } from '../constants/stepConstants';
 import './App.css';
-const App = (props) => {
-  const step = useSelector((state) => state.form.step);
+import {
+  Container,
+  createTheme,
+  CssBaseline,
+  Step,
+  StepLabel,
+  Stepper,
+  ThemeProvider
+} from '@mui/material';
+import FormWrapper from './Forms/FormWrapper';
+import { useSelector } from 'react-redux';
+const theme = createTheme();
 
-  switch (step) {
-    case steps.INSURANCE_FORM:
-      return (
-        <div>
-          <InsuranceForm />
-        </div>
-      );
-    case steps.BENEFICIARY_FORM:
-      return (
-        <div>
-          <BeneficiaryForm />
-        </div>
-      );
-    case steps.CONFIRM_FORM:
-      return (
-        <div>
-          <ConfirmForm />
-        </div>
-      );
-    case steps.SUCCESSFUL_PAGE:
-      return (
-        <div>
-          <SuccessfulPage />
-        </div>
-      );
-  }
+const App = () => {
+  const step = useSelector((state) => state.form.step);
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container>
+        <Stepper activeStep={step} alternativeLabel>
+          {steps.map((step, index) => (
+            <Step key={index}>
+              <StepLabel>{step.title}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+
+        <FormWrapper />
+      </Container>
+    </ThemeProvider>
+  );
 };
 
 export default App;

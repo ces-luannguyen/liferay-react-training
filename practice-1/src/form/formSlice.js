@@ -1,25 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import { steps } from '../constants/stepConstants';
 
 export const formSlice = createSlice({
-  name: "form",
+  name: 'form',
   initialState: {
-    step: 1,
+    step: 0,
     data: {
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      birthday: "",
-      idCard: "",
-      phoneNumber: "",
-      monthlySaving: "",
-      relationship: "spouse",
-      beneficiaryFirstName: "",
-      beneficiaryMiddleName: "",
-      beneficiaryLastName: "",
-      beneficiaryBirthday: "",
-      beneficiaryIdCard: "",
-      beneficiaryPhoneNumber: "",
-      agreeSubmit: false,
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      birthday: '',
+      idCard: '',
+      phoneNumber: '',
+      monthlySaving: '',
+      relationship: 'spouse',
+      beneficiaryFirstName: '',
+      beneficiaryMiddleName: '',
+      beneficiaryLastName: '',
+      beneficiaryBirthday: '',
+      beneficiaryIdCard: '',
+      beneficiaryPhoneNumber: '',
+      agreeSubmit: false
     }
   },
   reducers: {
@@ -27,14 +28,14 @@ export const formSlice = createSlice({
       state.data = { ...state.data, ...data };
     },
     goNext: (state) => {
-      if (state.step === 4) return;
+      if (state.step === steps.length - 1) return;
       state.step += 1;
     },
     goPrev: (state) => {
-      if (state.step === 1) return;
+      if (state.step === 0) return;
       state.step -= 1;
-    },
-  },
+    }
+  }
 });
 
 export const { setFormData, goNext, goPrev } = formSlice.actions;
