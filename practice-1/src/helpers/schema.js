@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { messages } from '../constants/messageConstants';
-export const InsuranceSchema = yup.object().shape({
+export const insuranceSchema = yup.object().shape({
   firstName: yup
     .string()
     .required(messages.REQUIRED)
@@ -26,7 +26,7 @@ export const InsuranceSchema = yup.object().shape({
     .matches(/^[0-9]*$/, messages.ONLY_DIGIT)
     .min(6, messages.MIN_VALUE_100000)
 });
-export const BeneficiarySchema = yup.object().shape({
+export const beneficiarySchema = yup.object().shape({
   beneficiaryFirstName: yup
     .string()
     .required(messages.REQUIRED)
@@ -50,6 +50,6 @@ export const BeneficiarySchema = yup.object().shape({
     .required(messages.REQUIRED)
     .matches(/^[0-9]{10}$/, messages.ONLY_DIGIT_10)
 });
-export const ConfirmSchema = yup.object().shape({
+export const confirmSchema = yup.object().shape({
   agreeSubmit: yup.boolean().oneOf([true], messages.TERM_AGREEMENT)
 });

@@ -5,11 +5,11 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFormData, goNext } from '../../form/formSlice';
-import { ConfirmSchema } from '../../helpers/schema';
+import { confirmSchema } from '../../helpers/schema';
 import { createInsuranceProfile } from '../../services/insuranceProfileService';
 import Buttons from './Buttons';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   error: {
     color: red[500]
   }
@@ -34,7 +34,7 @@ const ConfirmForm = () => {
         setError(error.message);
       }
     },
-    validationSchema: ConfirmSchema
+    validationSchema: confirmSchema
   });
 
   return (

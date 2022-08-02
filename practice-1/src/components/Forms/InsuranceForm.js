@@ -1,8 +1,8 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Container, Grid, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { goNext, setFormData } from '../../form/formSlice';
-import { InsuranceSchema } from '../../helpers/schema';
+import { insuranceSchema } from '../../helpers/schema';
 import Buttons from './Buttons';
 const InsuranceForm = () => {
   const data = useSelector((state) => state.form.data);
@@ -15,9 +15,8 @@ const InsuranceForm = () => {
 
       dispatch(goNext());
     },
-    validationSchema: InsuranceSchema
+    validationSchema: insuranceSchema
   });
-
   return (
     <Container maxWidth="md">
       <h1>Insurance Form</h1>
@@ -27,6 +26,7 @@ const InsuranceForm = () => {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <TextField
+                  error={formik.touched.firstName && !!formik.errors.firstName}
                   fullWidth
                   id="outlined-basic"
                   label="First Name *"
@@ -37,10 +37,8 @@ const InsuranceForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.firstName}
                   onBlur={formik.handleBlur}
+                  helperText={formik.touched.firstName && formik.errors.firstName}
                 />
-                {formik.touched.firstName && formik.errors.firstName && (
-                  <span className="error">{formik.errors.firstName}</span>
-                )}
               </Grid>
               <Grid item xs={4}>
                 <TextField
@@ -57,6 +55,7 @@ const InsuranceForm = () => {
               </Grid>
               <Grid item xs={4}>
                 <TextField
+                  error={formik.touched.lastName && !!formik.errors.lastName}
                   fullWidth
                   id="outlined-basic"
                   label="Last Name *"
@@ -67,16 +66,15 @@ const InsuranceForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.lastName}
                   onBlur={formik.handleBlur}
+                  helperText={formik.touched.lastName && formik.errors.lastName}
                 />
-                {formik.touched.lastName && formik.errors.lastName && (
-                  <span className="error">{formik.errors.lastName}</span>
-                )}
               </Grid>
             </Grid>
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <TextField
+                  error={formik.touched.birthday && !!formik.errors.birthday}
                   id="date"
                   label="Birthday *"
                   type="date"
@@ -90,13 +88,12 @@ const InsuranceForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.birthday}
                   onBlur={formik.handleBlur}
+                  helperText={formik.touched.birthday && formik.errors.birthday}
                 />
-                {formik.touched.birthday && formik.errors.birthday && (
-                  <span className="error">{formik.errors.birthday}</span>
-                )}
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  error={formik.touched.idCard && !!formik.errors.idCard}
                   fullWidth
                   id="outlined-basic"
                   label="ID Card *"
@@ -108,15 +105,14 @@ const InsuranceForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.idCard}
                   onBlur={formik.handleBlur}
+                  helperText={formik.touched.idCard && formik.errors.idCard}
                 />
-                {formik.touched.idCard && formik.errors.idCard && (
-                  <span className="error">{formik.errors.idCard}</span>
-                )}
               </Grid>
             </Grid>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <TextField
+                  error={formik.touched.phoneNumber && !!formik.errors.phoneNumber}
                   fullWidth
                   id="outlined-basic"
                   label="Phone Number *"
@@ -128,13 +124,12 @@ const InsuranceForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.phoneNumber}
                   onBlur={formik.handleBlur}
+                  helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
                 />
-                {formik.touched.phoneNumber && formik.errors.phoneNumber && (
-                  <span className="error">{formik.errors.phoneNumber}</span>
-                )}
               </Grid>
               <Grid item xs={6}>
                 <TextField
+                  error={formik.touched.monthlySaving && !!formik.errors.monthlySaving}
                   fullWidth
                   id="outlined-basic"
                   label="Monthly Saving *"
@@ -146,19 +141,11 @@ const InsuranceForm = () => {
                   onChange={formik.handleChange}
                   value={formik.values.monthlySaving}
                   onBlur={formik.handleBlur}
+                  helperText={formik.touched.monthlySaving && formik.errors.monthlySaving}
                 />
-                {formik.touched.monthlySaving && formik.errors.monthlySaving && (
-                  <span className="error">{formik.errors.monthlySaving}</span>
-                )}
               </Grid>
             </Grid>
           </div>
-
-          {/* <Grid container direction="row" justifyContent="flex-end" alignItems="center">
-            <Button variant="contained" type="submit">
-              Next
-            </Button>
-          </Grid> */}
           <Buttons retainedData={formik.values} />
         </form>
       </div>
