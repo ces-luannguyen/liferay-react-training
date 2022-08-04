@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { steps } from '../constants/stepConstants';
+import { STEPS } from '../constants/stepConstants';
 
 export const formSlice = createSlice({
   name: 'form',
@@ -28,7 +28,7 @@ export const formSlice = createSlice({
       state.data = { ...state.data, ...data };
     },
     goNext: (state) => {
-      if (state.step === steps.length - 1) return;
+      if (state.step === STEPS.length - 1) return;
       state.step += 1;
     },
     goPrev: (state) => {

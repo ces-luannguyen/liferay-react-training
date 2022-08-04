@@ -1,9 +1,6 @@
-import BeneficiaryForm from '../components/Forms/BeneficiaryForm';
-import ConfirmForm from '../components/Forms/ConfirmForm';
-import InsuranceForm from '../components/Forms/InsuranceForm';
-import SuccessfulStep from '../components/Forms/SuccessfulStep';
+import { BeneficiaryForm, ConfirmForm, InsuranceForm, SuccessfulStep } from '../components/Forms';
 
-export const steps = [
+export const STEPS = [
   { title: 'Insurance Form', component: <InsuranceForm /> },
   { title: 'Beneficiary Form', component: <BeneficiaryForm /> },
   { title: 'Confirm Form', component: <ConfirmForm /> },

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Container, CssBaseline, ThemeProvider } from '@mui/material';
-import FormWrapper from './Forms/FormWrapper';
 import { Provider } from 'react-redux';
 import store from '../form/store';
-import StepIndicator from './StepIndicator';
 import theme from '../config/themeConfig';
+import { Forms, StepIndicator } from './Forms';
 
 const App = () => {
   return (
@@ -13,7 +12,7 @@ const App = () => {
         <CssBaseline />
         <Container>
           <StepIndicator />
-          <FormWrapper />
+          <Forms />
         </Container>
       </ThemeProvider>
     </Provider>

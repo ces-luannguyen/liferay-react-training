@@ -1,6 +1,6 @@
 import { Button, Grid } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { steps } from '../../constants/stepConstants';
+import { STEPS } from '../../constants/stepConstants';
 import { goPrev, setFormData } from '../../form/formSlice';
 import PropTypes from 'prop-types';
 export default function Buttons(props) {
@@ -12,7 +12,7 @@ export default function Buttons(props) {
     dispatch(goPrev());
   };
 
-  const submitButtonText = step == steps.length - 2 ? 'Submit' : 'Next';
+  const submitButtonText = step == STEPS.length - 2 ? 'Submit' : 'Next';
   return (
     <Grid container direction="row" justifyContent="space-between" alignItems="center">
       {step > 0 && (
